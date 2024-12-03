@@ -11,13 +11,12 @@ const App = () => {
         const response = await axios.get("https://api.imgflip.com/get_memes");
         setMemes(response.data.data.memes);
       } catch (error) {
-        console.error("Error fetching memes:", error);
+        console.error(error);
       }
     };
     fetchMemes();
   }, []);
 
-  // Filter memes based on the search query
   const filteredMemes = memes.filter((meme) =>
     meme.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -28,7 +27,6 @@ const App = () => {
         Meme Template Viewer
       </h1>
 
-      {/* Search Bar */}
       <div className="mb-5 flex justify-center">
         <input
           type="text"
@@ -39,7 +37,6 @@ const App = () => {
         />
       </div>
 
-      {/* Meme Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {filteredMemes.length > 0 ? (
           filteredMemes.map((meme) => (
